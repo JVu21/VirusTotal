@@ -52,7 +52,7 @@ public class UserInterFace {
         String validURL = null;
         if(URL.equals("1"))
         {
-            validURL = VirusCheckerRequest.URL;
+            //validURL = VirusCheckerRequest.URL;
         }
 
         return validURL;

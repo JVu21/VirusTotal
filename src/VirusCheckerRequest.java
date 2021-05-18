@@ -1,4 +1,4 @@
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 import org.json.simple.parser.*;
 import java.net.*;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.io.*;
         private int mode;
 
         //API connection constants
-        private static final String URL = "https://www.virustotal.com/";
+        private static final String URL = "https://www.virustotal.com/v2/url/report?";
         private static final String API_KEY = "4d46b331c34cce7537f557538b5259014c5e7adb246ee589e4eda65c8f953aeb";
 
         //Mode constants
@@ -69,34 +69,23 @@ import java.io.*;
             return valid;
         }
 
-        public String setUnits(String URL)
-        {
-            String valid = validateURL(URL);
 
-            if(valid == null)
-            {
-                this.URL = units;
-            }
-
-            return valid;
-        }
-
-        public WeatherFetcherResponse getWeather() throws Exception
+        public void getWeather() throws Exception
         {
 
             //create a string representing the url with the appropriate parameters
-            String requestURL;
+            String requestURL = URL + "apikey=" + API_KEY;
             if(this.mode == ZIP_CODE)
             {
-                requestURL = URL + "?zip=" + zipCode;
+                //requestURL = URL + "?zip=" + zipCode;
             }
             else
             {
-                requestURL = URL + "?q=" + cityState;
+                //requestURL = URL + "?q=" + cityState;
             }
 
             //add the unit and api key
-            requestURL += "&units=" + units + "&APPID=" + API_KEY;
+            requestURL += "&resource=" + units;
 
             URL url = new URL(requestURL);
             System.out.println(requestURL);
@@ -112,9 +101,10 @@ import java.io.*;
             Double temperature = (Double)mainWeatherData.get("temp");
 
             //build the response object and return it
-            WeatherFetcherResponse response = new WeatherFetcherResponse(temperature);
-            return response;
+            //WeatherFetcherResponse response = new WeatherFetcherResponse(temperature);
+            //return response;
         }
 
     }
 }
+//Hello
